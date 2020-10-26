@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using LockBox.Core;
-using LockBox.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +12,22 @@ using Xamarin.Forms.Xaml;
 namespace LockBox.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPageDetail : ContentPage
+    public partial class AddAccount : ContentPage
     {
-        public MainPageDetail()
+        public AddAccount()
         {
             InitializeComponent();
-            Messenger.Default.Register<string>(this, "AddAccount", AddAccount);
         }
 
-        async void AddAccount(string arg)
+        private async void SaveClick(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAccount()
+            await Navigation.PopAsync();
+            Messenger.Default.Send(new LockBoxDetail()
             {
-                Title = "新建账号",
-                BindingContext = this.BindingContext
-            });
+                Name = lblName.Text,
+                Account = lblAccount.Text,
+                PassWord = lblPassWord.Text
+            }, "SaveAccount");
         }
-
     }
 }

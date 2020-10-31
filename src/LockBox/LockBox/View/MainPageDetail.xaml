@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LockBox.View.MainPageDetail">
-    <Grid>
+             x:Class="Toolkit.View.MainPageDetail">
+    <Grid BackgroundColor="#1E90FF">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
@@ -15,18 +15,39 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid VerticalOptions="Center" Margin="5" BackgroundColor="Red">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                        <SwipeView Margin="5" BackgroundColor="White">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="编辑" 
+                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.EditCommand}"
+                                               CommandParameter="{Binding Id}"
+                                               BackgroundColor="Green"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
 
-                            <Label Text="{Binding Name}" Padding="10,0"/>
-                            <StackLayout Grid.Row="1" Padding="10,0">
-                                <Label Text="{Binding Account}"/>
-                                <Label Text="{Binding PassWord}"/>
-                            </StackLayout>
-                        </Grid>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="删除" 
+                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type ContentPage}},Path=BindingContext.DeleteCommand}"
+                                               CommandParameter="{Binding Id}"
+                                               BackgroundColor="Red"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+
+                            <Grid VerticalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding Name}" Padding="10,0"/>
+                                <StackLayout Grid.Row="1" Padding="10,0">
+                                    <Label Text="{Binding Account}"/>
+                                    <Label Text="{Binding PassWord}"/>
+                                </StackLayout>
+                            </Grid>
+                        </SwipeView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -34,6 +55,6 @@
 
         <Button Grid.Row="1" Text="+"  FontSize="20" WidthRequest="50" Command="{Binding AddCommand}"
                 TextColor="White" HorizontalOptions="EndAndExpand"  Margin="0,0,10,10"
-                    CornerRadius="30" BackgroundColor="#1E90FF"/>
+                    CornerRadius="30" BackgroundColor="DeepPink"/>
     </Grid>
 </ContentPage>

@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LockBox.Core
+namespace Toolkit.Core
 {
-    public class LockBoxDetail : ViewModelBase
+    public class ToolkitDetail : ViewModelBase
     {
         private string name;
         private string account;

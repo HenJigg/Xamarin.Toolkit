@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LockBox.Core
+namespace Toolkit.Core
 {
-    public class LockBoxMaster
+    public class ToolkitMaster
     {
         public int Id { get; set; }
 

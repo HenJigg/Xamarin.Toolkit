@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="LockBox.MainPage">
+             x:Class="Toolkit.MainPage">
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -32,9 +32,11 @@
 
         <CollectionView x:Name="CollectionView" Grid.Row="1" 
                         ItemsSource="{Binding GridModelList}"
+                        SelectionMode="Single"
                         BackgroundColor="Transparent" 
                         SelectionChangedCommand="{Binding SelectItemCommand}"
-                        SelectionChangedCommandParameter="{Binding Source={x:Reference CollectionView},Path=SelectedItem}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference CollectionView},
+            Path=SelectedItem}"
                         >
             <CollectionView.ItemTemplate>
                 <DataTemplate>

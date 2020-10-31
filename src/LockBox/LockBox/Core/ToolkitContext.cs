@@ -5,13 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LockBox.Core
+namespace Toolkit.Core
 {
-    public class LockBoxDataContext : DbContext
+    public class ToolkitContext : DbContext
     {
         private readonly string databasepath;
 
-        public LockBoxDataContext(string databasepath)
+        public ToolkitContext(string databasepath)
         {
             this.databasepath = databasepath;
         }
@@ -21,8 +21,8 @@ namespace LockBox.Core
             builder.UseSqlite($"FileName={databasepath}");
         }
 
-        public DbSet<LockBoxDetail> LockBoxDetails { get; set; }
+        public DbSet<ToolkitDetail> ToolkitDetails { get; set; }
 
-        public DbSet<LockBoxMaster> LockBoxMasters { get; set; }
+        public DbSet<ToolkitMaster> ToolkitMasters { get; set; }
     }
 }

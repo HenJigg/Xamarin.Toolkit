@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using LockBox.Core;
-using LockBox.ViewModel;
+using Toolkit.Core;
+using Toolkit.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.Extensions.Caching.Memory;
 
-namespace LockBox.View
+namespace Toolkit.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPageDetail : ContentPage
@@ -18,17 +19,16 @@ namespace LockBox.View
         public MainPageDetail()
         {
             InitializeComponent();
-            Messenger.Default.Register<string>(this, "AddAccount", AddAccount);
+            Messenger.Default.Register<string>(this, "OpenView", OpenView);
         }
 
-        async void AddAccount(string arg)
+        async void OpenView(string arg)
         {
             await Navigation.PushAsync(new AddAccount()
             {
-                Title = "新建账号",
+                Title = arg,
                 BindingContext = this.BindingContext
             });
         }
-
     }
 }

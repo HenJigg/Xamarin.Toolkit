@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using LockBox.Common;
-using LockBox.Core;
-using LockBox.Interfaces;
+using Toolkit.Common;
+using Toolkit.Core;
+using Toolkit.Interfaces;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -12,20 +12,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LockBox.ViewModel
+namespace Toolkit.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
         {
-            SelectItemCommand = new RelayCommand<LockBoxMaster>(async arg =>
+            SelectItemCommand = new RelayCommand<ToolkitMaster>(async arg =>
              {
                  if (arg != null)
                  {
-                     LockBoxInfo inf = new LockBoxInfo();
+                     ToolkitInfo inf = new ToolkitInfo();
                      inf.Master = arg;
-                     inf.Details = new ObservableCollection<LockBoxDetail>();
-                     var result= await service.GetLockBoxDetailsAsync(arg.Id);
+                     inf.Details = new ObservableCollection<ToolkitDetail>();
+                     var result= await service.GetToolkitDetailsAsync(arg.Id);
                      result?.ForEach(item =>
                      {
                          inf.Details.Add(item);
@@ -34,24 +34,24 @@ namespace LockBox.ViewModel
                  }
                     
              });
-            this.service = DependencyService.Get<ILockBoxService>();
+            this.service = DependencyService.Get<IToolkitService>();
         }
 
-        private ObservableCollection<LockBoxMaster> gridmodel;
-        private readonly ILockBoxService service;
+        private ObservableCollection<ToolkitMaster> gridmodel;
+        private readonly IToolkitService service;
 
-        public ObservableCollection<LockBoxMaster> GridModelList
+        public ObservableCollection<ToolkitMaster> GridModelList
         {
             get { return gridmodel; }
             set { gridmodel = value; RaisePropertyChanged(); }
         }
 
-        public RelayCommand<LockBoxMaster> SelectItemCommand { get; private set; }
+        public RelayCommand<ToolkitMaster> SelectItemCommand { get; private set; }
 
         public async Task InitDataAsync()
         {
-            var result = await service.GetLockBoxMastersAsync();
-            GridModelList = new ObservableCollection<LockBoxMaster>();
+            var result = await service.GetToolkitMastersAsync();
+            GridModelList = new ObservableCollection<ToolkitMaster>();
             result?.ForEach(arg =>
             {
                 GridModelList.Add(arg);

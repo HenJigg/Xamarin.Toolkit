@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace LockBox.iOS
+namespace Toolkit.iOS
 {
     public class Application
     {

@@ -1,22 +1,22 @@
-﻿using LockBox.Core;
-using LockBox.Interfaces;
-using LockBox.Service;
+﻿using Toolkit.Core;
+using Toolkit.Interfaces;
+using Toolkit.Service;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace LockBox
+namespace Toolkit
 {
     public partial class App : Application
     {
-        public static LockBoxDataContext _context;
-        public static LockBoxDataContext Instance
+        public static ToolkitContext _context;
+        public static ToolkitContext Instance
         {
             get
             {
                 if (_context == null)
                 {
-                    _context = new LockBoxDataContext(Constants.DatabasePath);
+                    _context = new ToolkitContext(Constants.DatabasePath);
                 }
                 return _context;
             }
@@ -26,7 +26,7 @@ namespace LockBox
         {
             InitializeComponent();
 
-            DependencyService.Register<ILockBoxService, LockBoxService>();
+            DependencyService.Register<IToolkitService, ToolkitService>();
             Constants.DataBaseInitAsync(Instance);
             MainPage = new NavigationPage(new MainPage());
         }

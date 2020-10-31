@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using LockBox.Core;
+using Toolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace LockBox.View
+namespace Toolkit.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddAccount : ContentPage

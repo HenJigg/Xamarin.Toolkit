@@ -1,15 +1,15 @@
-﻿using LockBox.Core;
+﻿using Toolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace LockBox.Common
+namespace Toolkit.Common
 {
-    public class LockBoxInfo
+    public class ToolkitInfo
     {
-        public LockBoxMaster  Master { get; set; }
+        public ToolkitMaster Master { get; set; }
 
-        public ObservableCollection<LockBoxDetail> Details { get; set; }
+        public ObservableCollection<ToolkitDetail> Details { get; set; }
     }
 }

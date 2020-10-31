@@ -1,25 +1,29 @@
-﻿using LockBox.Core;
+﻿using Toolkit.Core;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LockBox.Interfaces
+namespace Toolkit.Interfaces
 {
-    public interface ILockBoxService
+    public interface IToolkitService
     {
-        Task<List<LockBoxMaster>> GetLockBoxMastersAsync();
+        Task<List<ToolkitMaster>> GetToolkitMastersAsync();
 
-        Task<LockBoxMaster> GetLockBoxMasterByIdAsync(int id);
+        Task<ToolkitMaster> GetToolkitMasterByIdAsync(int id);
 
-        Task<bool> DeleteLockBoxMasterById(int id);
+        Task<bool> DeleteToolkitMasterById(int id);
 
-        Task<bool> UpdateLockBoxMater(LockBoxMaster boxMaster);
+        Task<bool> UpdateToolkitMater(ToolkitMaster boxMaster);
 
-        Task<List<LockBoxDetail>> GetLockBoxDetailsAsync(int id);
+        Task<List<ToolkitDetail>> GetToolkitDetailsAsync(int id);
 
-        Task<bool> UpdateLockBoxDetail(LockBoxDetail detail);
+        Task<ToolkitDetail> GetToolkitDetailByIdAsync(int id);
 
-        Task<bool> DeleteLockBoxDetail(int id);
+        Task<bool> AddToolkitDetail(ToolkitDetail detail);
+
+        Task<bool> UpdateToolkitDetail(ToolkitDetail detail);
+
+        Task<bool> DeleteToolkitDetail(int id);
     }
 }

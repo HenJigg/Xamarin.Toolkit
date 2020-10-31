@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using LockBox.Common;
-using LockBox.Core;
-using LockBox.View;
-using LockBox.ViewModel;
+using Toolkit.Common;
+using Toolkit.Core;
+using Toolkit.View;
+using Toolkit.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,30 +11,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace LockBox
+namespace Toolkit
 {
     public partial class MainPage : ContentPage
     {
         MainViewModel vm;
+        MainViewDetailModel viewModel;
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            Messenger.Default.Register<LockBoxInfo>(this, "SelectedItemToken", SelectedItem);
+            Messenger.Default.Register<ToolkitInfo>(this, "SelectedItemToken", SelectedItem);
             vm = new MainViewModel();
+            viewModel = new MainViewDetailModel();
             this.BindingContext = vm;
         }
 
-        async void SelectedItem(LockBoxInfo boxInfo)
+        async void SelectedItem(ToolkitInfo boxInfo)
         {
+            (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.FromHex("#1E90FF");
+            viewModel.ToolkitMaster = boxInfo.Master;
+            viewModel.GridModelDetailList = boxInfo.Details;
             await Navigation.PushAsync(new MainPageDetail()
             {
                 Title = boxInfo.Master.GroupName,
-                BindingContext = new MainViewDetailModel()
-                {
-                    GridModelDetailList = boxInfo.Details
-                }
+                BindingContext = viewModel
             });
+            CollectionView.SelectedItem = null;
         }
 
         protected override async void OnAppearing()

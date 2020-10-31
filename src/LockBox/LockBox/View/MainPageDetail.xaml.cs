@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using LockBox.Core;
+using LockBox.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +18,17 @@ namespace LockBox.View
         public MainPageDetail()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "AddAccount", AddAccount);
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void AddAccount(string arg)
         {
-
+            await Navigation.PushAsync(new AddAccount()
+            {
+                Title = "新建账号",
+                BindingContext = this.BindingContext
+            });
         }
+
     }
 }

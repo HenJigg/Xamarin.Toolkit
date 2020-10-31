@@ -1,10 +1,10 @@
-﻿using LockBox.Common;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using LockBox.Common;
 using LockBox.Core;
 using LockBox.Interfaces;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +14,7 @@ using Xamarin.Forms;
 
 namespace LockBox.ViewModel
 {
-    public class MainViewModel : ObservableObject
+    public class MainViewModel : ViewModelBase
     {
         public MainViewModel()
         {
@@ -30,7 +30,7 @@ namespace LockBox.ViewModel
                      {
                          inf.Details.Add(item);
                      });
-                     WeakReferenceMessenger.Default.Send(inf, "SelectedItemToken");
+                     Messenger.Default.Send(inf, "SelectedItemToken");
                  }
                     
              });
@@ -43,7 +43,7 @@ namespace LockBox.ViewModel
         public ObservableCollection<LockBoxMaster> GridModelList
         {
             get { return gridmodel; }
-            set { gridmodel = value; OnPropertyChanged(); }
+            set { gridmodel = value; RaisePropertyChanged(); }
         }
 
         public RelayCommand<LockBoxMaster> SelectItemCommand { get; private set; }

@@ -16,17 +16,12 @@ namespace LockBox.ViewModel
         {
             AddCommand = new RelayCommand(() =>
             {
+                LockBoxDetail = new LockBoxDetail();
                 Messenger.Default.Send("", "AddAccount");
             });
-            Messenger.Default.Register<LockBoxDetail>(this, "SaveAccount", (arg) =>
+            Messenger.Default.Register<string>(this, "SaveAccount", (arg) =>
             {
-                GridModelDetailList = new ObservableCollection<LockBoxDetail>();
-                GridModelDetailList.Add(new LockBoxDetail()
-                {
-                    Account = arg.Account,
-                    Name = arg.Name,
-                    PassWord = arg.PassWord
-                });
+                GridModelDetailList.Add(LockBoxDetail);
             });
         }
 
@@ -36,6 +31,14 @@ namespace LockBox.ViewModel
         {
             get { return gridModelDetailList; }
             set { gridModelDetailList = value; RaisePropertyChanged(); }
+        }
+
+        private LockBoxDetail lockBoxDetail;
+
+        public LockBoxDetail LockBoxDetail
+        {
+            get { return lockBoxDetail; }
+            set { lockBoxDetail = value; RaisePropertyChanged(); }
         }
 
         public RelayCommand AddCommand { get; set; }

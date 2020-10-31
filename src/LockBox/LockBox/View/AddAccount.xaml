@@ -8,13 +8,13 @@
     <ContentPage.Content>
         <StackLayout Padding="20">
             <Label Text="名称"/>
-            <Entry x:Name="lblName"/>
+            <Entry Text="{Binding LockBoxDetail.Name}"/>
             
             <Label Text="账号"/>
-            <Entry x:Name="lblAccount"/>
+            <Entry Text="{Binding LockBoxDetail.Account}"/>
             
             <Label Text="密码"/>
-            <Entry x:Name="lblPassWord"/>
+            <Entry Text="{Binding LockBoxDetail.PassWord}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

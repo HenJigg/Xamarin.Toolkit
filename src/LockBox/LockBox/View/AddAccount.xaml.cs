@@ -22,12 +22,7 @@ namespace LockBox.View
         private async void SaveClick(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
-            Messenger.Default.Send(new LockBoxDetail()
-            {
-                Name = lblName.Text,
-                Account = lblAccount.Text,
-                PassWord = lblPassWord.Text
-            }, "SaveAccount");
+            Messenger.Default.Send("", "SaveAccount");
         }
     }
 }
